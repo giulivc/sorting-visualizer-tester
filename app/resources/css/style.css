@@ -1,0 +1,498 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: "DidactGothic";
+    src: url("../fonts/DidactGothic.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+
+    height: 100%;
+    margin: 0;
+
+    background-color: #081B33;
+
+    font-family: 'DidactGothic', serif;
+    color: white;
+
+    font-size: 20px; 
+
+}
+
+.information-text {
+    
+    padding: 50px 100px 0px 100px;
+    
+    color: white;
+    text-align: center;
+}
+
+
+
+.next-button {
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    margin: 50px;
+
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+
+    width: fit-content;
+    height: fit-content;
+
+    padding: 10px 20px 10px 20px;
+    background: #FF9900;
+
+    color: white;   
+
+    font-family: 'DidactGothic', serif;
+    font-size: 20px;
+
+}
+
+.next-button:hover {
+    cursor: pointer;
+}
+
+
+#algorithm-title {
+    color: #bed733; 
+    font-size: 40px
+}
+
+#visualization {
+    height: 100%;
+    margin: 0;
+}
+
+
+.grid {
+
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-areas: 
+        'title title title title title'
+        'data array array code code'
+        'data array array code code'
+        'fill array array code code'
+        'footer footer footer footer footer';
+
+}
+
+.title {
+    grid-area: title;
+    text-align: center;
+    
+}
+
+.data-container {
+    grid-area: data;
+
+    margin-left: 20px;
+    padding: 20px;
+
+    width: 250px;
+    height: fit-content;
+
+    background-color: #152642;
+}
+
+/* toggle properties */
+#toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+
+    margin-right: 10px;
+
+}
+
+#toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background: #081B33;
+    border-radius: 20px;
+    
+    -webkit-transition: .4s;
+    transition: .4s;
+
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+
+    outline: none;
+    background: url(../data/toggle-slider.png);
+    background-size: cover;
+    
+    border-radius: 50%;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .toggle-slider {
+    background-color: #FF9900;
+  }
+  
+  
+  input:checked + .toggle-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+
+  #size-input {
+
+    width: 50px;
+    background: none;
+    outline: none;
+    border: 0;
+
+    color: white;
+    font-family: 'DidactGothic', serif;
+    font-size: 20px;
+  }
+
+
+  /* array size slider */
+
+  .size-slider {
+    -webkit-appearance: none;
+
+    width: 100%;
+    height: 15px;
+
+    border-radius: 5px;  
+
+    background: #081B33;
+    
+    outline: none;
+
+  }
+  
+  .size-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 25px;
+    height: 25px;
+    
+    border: 0;
+
+    background: url(../data/size-slider-thumb.png);
+    background-size: cover;
+   
+    cursor: pointer;
+  }
+
+  #choose-algorithm {
+    margin: auto;
+    padding: 20px;
+
+    border-radius: 5px;
+
+    width: 250px;
+    height: fit-content;
+
+    background-color: #152642;
+  }
+
+  #choose-mode {
+    margin: auto;
+    padding: 20px;
+
+    border-radius: 5px;
+
+    width: 250px;
+    height: fit-content;
+
+    background-color: #152642;
+}
+  
+
+
+  .mode-button {
+
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+
+    height: 40px;
+    width: fit-content;
+
+    padding: 5px;
+
+    background: none;
+
+    font-family: 'DidactGothic', serif;
+    font-size: 20px;
+
+    color: white; 
+
+  }
+
+  .selected {
+      color: #FF9900;
+  }
+
+  .mode-button:hover{
+      cursor: pointer;
+  }
+
+  .generate-button {
+      outline: none;
+      border: 0;
+      border-radius: 5px;
+
+      width: 100%;
+      height: fit-content;
+
+      padding: 5px;
+      background: #FF9900;
+
+      color: white;   
+
+      font-family: 'DidactGothic', serif;
+      font-size: 18px;
+
+      
+  }
+
+  .generate-button:hover {
+
+    cursor: pointer;
+  }
+
+
+
+
+  #custom-input {
+      width: 70%;
+      border: 0;
+
+      border-radius: 5px;  
+      padding: 5px;
+
+      color: #081B33;
+
+      height: 20px;
+
+      font-family: 'DidactGothic', serif;
+     
+      outline: none;
+  }
+
+  #error-text {
+      color: red;
+      font-size: small;
+      visibility: hidden;
+  }
+
+
+
+.array-container { 
+    grid-area: array; 
+
+    align-self: flex-end;
+    justify-self: center;
+
+    transform: rotate(180deg);
+    transform: scaleY(-1);
+
+}
+
+
+.code-container { 
+    
+    grid-area: code; 
+    align-self: center;
+    justify-self: left;
+     
+
+}
+
+
+
+.footer { 
+
+    grid-area: footer; 
+    background-color: #152642;
+
+    font-size: 30px;
+
+    text-align: center;
+
+    color: #FF9900;
+
+}
+
+
+.array-container li {
+    
+    display: block;
+    float: left;
+
+    width: 22px;
+
+    margin-right: 5px;
+
+    background-color: white;
+    list-style-type: none;
+}
+
+.unsorted {
+    background-color: white;
+}
+
+.sorted {
+    background-color: #BED733;
+}
+
+.focused {
+    background-color: #FF9900;
+}
+
+.pseudocode {
+    
+    line-height: 200%;
+    list-style-type: none;
+}
+
+.pseudocode .highlighted {
+    background-color: #FF9900;
+}
+
+.controller-button {
+    width: 70px;   
+    padding: 20px 10px 0 10px;
+}
+
+.controller-button:hover {
+    cursor: pointer;
+}
+
+
+
+
+/*speed.html*/
+
+.speed-slider {
+    -webkit-appearance: none;
+
+    width: 200px;
+    height: 10px;
+
+    margin: 10px;
+
+    border-radius: 5px;  
+
+    background: #081B33;
+    
+    outline: none;
+
+  }
+  
+  .speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 20px;
+    height: 20px;
+    
+    border: 0;
+    
+    background: url(../data/speed-slider-thumb.png);
+    background-size: cover;
+   
+    cursor: pointer;
+  }
+
+
+
+/*sequencer.html*/
+
+
+.sequencer-button {
+    width: 20px;
+    padding: 55px 25px 25px 25px;
+}
+
+.sequencer-button:hover {
+    cursor: pointer;
+}
+
+
+#study-completed-text {
+    
+    padding: 50px 100px 0px 100px;
+    
+    color: white;
+    text-align: center;
+
+    
+}
+
+textarea {
+
+    width: 50%;
+    height: 100px;
+
+    padding: 10px;
+
+    outline: none;
+    border: 0;
+    border-radius: 5px;
+    resize: none;
+    
+    background-color: #152642;
+    
+    color: white;
+    font-family: 'DidactGothic', serif;
+}
+
+#feedback-button {
+    width: fit-content;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#feedback-button:hover {
+    cursor: pointer;
+}
+
+
+
+
+

@@ -1,0 +1,16 @@
+{
+    "name": "sorting-av-tester",
+    "version": "0.0.1",
+    "description": "A Node.js plattform to test Sorting Visualizer variants",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js /app 8001"
+    },
+    "type": "module",
+    "author": "Giulia von Canal <giulivcanal@googlemail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithm Visualizer</title>
+    <link rel="stylesheet" href="./resources/css/style.css">
+    <link href="https://unpkg.com/survey-knockout@1.8.52/modern.css" type="text/css" rel="stylesheet" />    
+    <link rel="shortcut icon" href="#">
+
+</head>
+
+<body>
+
+    <!-- #### introduction #### -->
+
+    <div class="information-text" id="choose-condition">
+        
+        <p style="font-size: x-large; color: #9980FF;">Sorting Visualizer</p><br>
+    
+        <p>Wähle einen Sortieralgorithmus und einen Modus, um den entsprechenden Sorting Visualizer zu testen.</p><br><br>
+
+        <div id="choose-algorithm" style="text-align: center;">
+            <button class="mode-button selected" id="bubble-sort" >BubbleSort</button><br>
+            <button class="mode-button" id="selection-sort" >SelectionSort</button><br>
+            <button class="mode-button" id="insertion-sort" >InsertionSort</button><br>
+        </div><br>
+
+        <div id="choose-mode" style="text-align: center;">
+            <button class="mode-button selected" id="base" >base</button><br>
+            <button class="mode-button" id="speed" >speed</button><br>
+            <button class="mode-button" id="data" >data</button><br>
+            <button class="mode-button" id="step-through" >step-through</button>
+        </div>
+
+        <button class="next-button" id="second-page-button">Testen</button>
+
+    </div>
+
+    <!-- #### visuliazion container #### -->
+
+    <div id="visualization" style="display: none;">
+
+        <div class="grid" >
+
+            <div class="title">
+                <div></p>Sorting Visualizer</div>
+                <div id="algorithm-title">BubbleSort</div>
+                
+            </div>
+
+            <div id="data-controller" style="display: none;">
+
+                <div class="data-container">
+                    <label id="toggle">
+                        <input id="data-toggle" type="checkbox">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    Custom Array<br><br>
+                    <div id="random-generator">
+                        Array Size: <input id="size-input" value="15"></input><br><br>
+                        <input type="range" min="4" max="100" value="15" class="size-slider" id="size-setting"><br><br>
+                        <div id="mode-picker" style="text-align: center;">
+                            <button class="mode-button selected" id=0 >Random</button><br>
+                            <button class="mode-button" id=1 >Nearly Sorted</button><br>
+                            <button class="mode-button" id=2 >Sorted</button>
+                        </div>
+                    
+                        <br><br>
+                        <button class="generate-button" id="generate-random">Create</button>
+                    </div>
+                    <div id="custom-generator" style="display: none">
+                        <p>Enter Digits:</p>
+                        <input id="custom-input" type="text" value="29,14,17,34,8">
+                        <p id="error-text" style="visibility: hidden;">Error Message</p>
+                        <button class="generate-button" id="generate-custom">Create</button>
+                    </div>
+                    
+                    
+                </div>
+
+            </div>
+            
+            <div class="array-container">
+                <div id="array">
+                    
+                </div>
+            </div>
+    
+            <div class="code-container">
+                <ul class="pseudocode" id="bubble-sort" style="display: none;">
+                
+                    <li>for (i = 0; i &lt array.size; i++) {</li>
+                    <li style="text-indent:20px;">for (j = 0; j &lt array.size - i - 1; j++) {</li>
+                    <li style="text-indent:40px;">if (array[j] > array[j+1]) {</li>
+                    <li style="text-indent:60px;">swap(array[j], array[j+1])</li>
+                    <li style="text-indent:40px;">}</li>
+                    <li style="text-indent:20px;">}</li>
+                    <li>}</li>
+                        
+                </ul>
+
+                <ul class="pseudocode" id="insertion-sort" style="display: none;">
+
+                    <li>for (i = 0; i &lt array.size; i++) {</li>
+                    <li style="text-indent:20px;">toInsert = array[i];</li>
+                    <li style="text-indent:40px;">for (j = i; j > 0 && array[j] &lt array[j-1]; j--) {</li>
+                    <li style="text-indent:60px;">swap(array[j], array[j-1])</li>
+                    <li style="text-indent:40px;">}</li>
+                    <li style="text-indent:20px;">}</li>
+                    <li>}</li>
+        
+                </ul>
+
+                <ul class="pseudocode" id="selection-sort" style="display: none;">
+                    <li>for (i = 0; i &lt array.size; i++) {</li>
+                    <li style="text-indent:20px;">minimum = array[i];</li>
+                    <li style="text-indent:20px;">for (j = i + 1; j &lt array.size; j++) {</li>
+                    <li style="text-indent:40px;">if (minimum > array[j]) {</li>
+                    <li style="text-indent:60px;">minimum = array[j]</li>
+                    <li style="text-indent:40px;">}</li>
+                    <li style="text-indent:40px;">swap( array[i], minimum )</li>
+                    <li style="text-indent:20px;">}</li>
+                    <li>}</li>
+
+                </ul>
+            </div>
+    
+            <div class="footer" id="control-bar">
+
+                <div id="speed-controller" style="display: none;">
+                    <p style="display:inline; font-size: x-large; color: white;">slow</p>
+                    <input type="range" min="100" max="1900" value="1000" class="speed-slider" id="speed-slider">
+                    <p style="display:inline; font-size: x-large; color: white;">fast</p><br>
+                </div>
+
+                <div id="base-controller" style="display: block;">
+                    <img class="controller-button" id="reset-button" src="/app/resources/data/reset-icon.png" style="width: 50px;">
+                    <img class="controller-button" id="start-button" src="/app/resources/data/start-icon.png">
+                    <img class="controller-button" id="pause-button" src="/app/resources/data/pause-icon.png" style="display: none;">
+                    <img class="controller-button" id="placeholder" src="/app/resources/data/reset-icon.png" style="width: 50px; visibility: hidden;">
+                    <br>
+                    <div id="button-descr">Play</div>
+
+                </div>
+                
+                <div id="step-controller" style="display: none;">
+                    <img class="sequencer-button" id="reset-button" src="/app/resources/data/skip-to-start-icon.png">
+                    <img class="sequencer-button" id="backward-button" src="/app/resources/data/backward-icon.png">
+                    <img class="controller-button" id="start-button" src="/app/resources/data/start-icon.png">
+                    <img class="controller-button" id="pause-button" src="/app/resources/data/pause-icon.png" style="display: none;">
+                    <img class="sequencer-button" id="forward-button" src="/app/resources/data/forward-icon.png">
+                    <img class="sequencer-button" id="skip-to-end-button" src="/app/resources/data/skip-to-end-icon.png">
+                    <br>
+                    <div id="button-descr">Play</div>
+                </div>
+                
+    
+            </div>
+    
+        </div>
+    
+    </div>
+
+    <script type="module" src="./resources/js/index.js"></script>
+    <script src="https://unpkg.com/knockout@3.5.1/build/output/knockout-latest.js"></script>
+    <script src="https://unpkg.com/survey-knockout"></script>
+
+</body>
+
+</html>
